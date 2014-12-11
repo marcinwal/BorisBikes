@@ -1,5 +1,5 @@
 require './lib/van'
-
+#require 'byebug'
 
 describe Van do 
 
@@ -85,6 +85,17 @@ describe Van do
   
   it 'should raise an error if number is below zero' do
     expect(lambda{Van.new(:capacity => -10)}).to raise_error(RuntimeError, 'Should be above zero')  
-  end  
+  end 
+
+  it "should release one bike from the station" do
+    bk = Bike.new
+    bk.break!
+    station.dock(bike)
+    bike.break!
+    station.dock(bk)
+    van.collect2(station)
+    #byebug
+    expect(van.bikes_in_van).to eq(2)
+  end 
 
 end  

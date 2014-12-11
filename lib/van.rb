@@ -33,6 +33,10 @@ class Van
 		station.release_N_bkn(to_take).each {|bk| @bikes << bk }
 	end	
 
+  def collect2(station)  #clean and better solution
+    @bikes += station.release_bikes(maximum: free_space)
+  end
+
 	# def collect(station)
 	# 	station.release_broken_bikes(maximum:free_space).each {|bk| @bikes << bk }
   # end
